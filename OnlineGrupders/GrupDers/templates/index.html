@@ -1,0 +1,234 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online Ders Platformu</title>
+
+  <!-- CSS Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Fredoka', sans-serif;
+      padding-top: 70px;
+      background-color: #f8f9fa;
+    }
+
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 0.8rem 1rem;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #4B6EF5;
+      font-size: 1.5rem;
+    }
+
+    .navbar-nav .nav-link {
+      margin-left: 1rem;
+      color: #333;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #4B6EF5;
+      text-decoration: underline;
+    }
+
+    .carousel-item img {
+      object-fit: cover;
+      height: 500px;
+    }
+
+    .horizontal-card {
+      width: 24rem;
+      height: 12rem;
+      display: flex;
+      flex-direction: row;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .horizontal-card:hover {
+      transform: scale(1.03);
+      z-index: 10;
+      position: relative;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-img-left {
+      width: 40%;
+      object-fit: cover;
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+
+    .card-body {
+      width: 60%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      z-index: 10;
+      position: relative;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">BestamiHoca</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="#">Bir Öğretmen Bul</a>
+        <a class="nav-link" href="#">Grup Ders</a>
+        <a class="nav-link" href="#">Topluluk</a>
+        <a class="nav-link" href="#">Bize Katıl</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- CAROUSEL -->
+<div id="carouselExampleCaptions" class="carousel slide mt-3" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></button>
+  </div>
+  <div class="carousel-inner">
+    {% for i in "123" %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <img src="{% static 'img/online1.png' %}" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Canlı Derslere Katıl</h5>
+        <p>Alanında uzman eğitmenlerle birebir ya da grup dersleri al.</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+    <span class="visually-hidden">Önceki</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+    <span class="visually-hidden">Sonraki</span>
+  </button>
+</div>
+
+<!-- HAFTANIN DERSLERİ SLIDER -->
+<section class="py-4 bg-light">
+  <div class="container">
+    <h2 class="text-center fw-bold mb-4">HAFTANIN SON EKLENEN DERSLERİ</h2>
+    <div class="d-flex align-items-center">
+      <button id="prevBtn" class="btn btn-primary me-2">❮</button>
+      <div id="cardWrapper" class="d-flex overflow-hidden w-100">
+        {% for i in "1234567890" %}
+        <div class="horizontal-card me-3">
+          <img src="{% static 'img/online1.png' %}" class="card-img-left" alt="Card image">
+          <div class="card-body">
+            <p class="text-muted mb-1">Amber Jar</p>
+            <h5 class="card-title">Honey best nectar you wish to get</h5>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <button id="nextBtn" class="btn btn-primary ms-2">❯</button>
+    </div>
+  </div>
+</section>
+
+<!-- FİLTRELEME ALANI -->
+<div class="container mb-5">
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <select class="form-select">
+        <option selected>Kategori Seç</option>
+        <option value="1">Eğitim</option>
+        <option value="2">Teknoloji</option>
+        <option value="3">Sanat</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select class="form-select">
+        <option selected>Ders Seç</option>
+        <option value="1">Matematik</option>
+        <option value="2">Türkçe</option>
+        <option value="3">Fen</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" placeholder="Anahtar kelime ara...">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary w-100">Filtrele</button>
+    </div>
+  </div>
+
+  <!-- KARTLAR -->
+  <div class="row">
+    {% for i in "1234" %}
+    <div class="col-md-3 mb-4">
+      <div class="card w-100">
+        <img src="{% static 'img/online1.png' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title.</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+        </ul>
+        <div class="card-body">
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Scripts -->
+<script>
+  const cardWrapper = document.getElementById('cardWrapper');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const scrollAmount = 250;
+
+  prevBtn.addEventListener('click', () => {
+    cardWrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    cardWrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
